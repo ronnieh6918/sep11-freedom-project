@@ -2,7 +2,7 @@
 
 ## Tool: **React**
 
-## Project: **Wordle-- but with more letters (current idea)**
+## Project: **Extreme Wordle (more letters)**
 
 ---
 
