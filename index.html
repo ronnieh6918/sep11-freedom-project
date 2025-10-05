@@ -7,23 +7,40 @@
 
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" />
         <link href="style.css" rel="stylesheet" type="text/css" />
+
         <style>
             /* CSS */
-            
+
         </style>
-        
+
         <title>Title</title>
     </head>
     <body>
         <!-- HTML -->
-        
-        
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- <script src="script.js"></script> -->
-        <script>
-            // JS
-            
-            
+        <div id = "Food"></div>
+
+        <!--React Set Up-->
+        <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+        <!-- React Code -->
+        <script type = "text/babel">
+          function Cookies() {
+            return <img src= "tool/img/cookies.jpeg" alt="Cookies"/>;
+          }
+
+          function Food() {
+            return (
+              <section>
+                <h1>Tasty Treat:</h1>
+                <Cookies/>
+              </section>
+            );
+          }
+
+          const root = ReactDOM.createRoot(document.getElementById("Food"));
+          root.render(<Food />);
+
         </script>
     </body>
 </html>
