@@ -12,9 +12,9 @@
 ### Notes:
 * ``function text(){}`` = creates a defined function component called text
 * ``return(element);`` = inside of a component is a return statement where you can put HTML elements to render what appears on the users interface when using that specific component
-* ``<script type = "text/babel"> = is a syntax used for Javascript with React.
-* ``const root = ReactDOM.createRoot(document.getElementById("Food"));`` =
-* ``root.render(<Food />);`` =
+* ``<script type = "text/babel">`` = is a syntax used for Javascript with React
+* ``const root = ReactDOM.createRoot(document.getElementById("Food"));`` = create a variable root and access ReactDOM components into a specific element with an id listed as Food
+* ``root.render(<Food />);`` = Render the food function component in the React component assigned when root was created
 
 <br>
 
