@@ -57,17 +57,65 @@ The result of the code:
 
 <img width="211" height="235" alt="Screenshot 2025-10-05 4 14 14 PM" src="https://github.com/user-attachments/assets/01708fa1-5714-46ce-aef7-85bdd6118f86" />
 
+<hr>
+
 ### 10/27/2025:
-* Experimenting with React JS using conditionals and using one of React component.
+* Experimenting with React JS with conditionals and using **React Hook, React-controlled inputs using JSX elements, and Event binding.**
 
+### Notes:
+*  ``React.useState("")`` - A React Hook that stores user's guess and updates everytime they input a new value.
+*  ``(guess.toUpperCase() === "WORDLE")`` - The word that the user is guessing (**the word remain the same and will apply even if all the letters guessed by the user are capitalized**).
+*  ``<input type="text" value={guess} onChange={(e) => setGuess(e.target.value) placeholder="Type your guess"}/>`` - A controlled input shows the current guess and updates it by storing it in the React Hook.
+    * ``value={guess}`` - Whatever the user inputs is stored and React renders it.
+    * ``onChange`` - React event handler; runs when user types and changes input.
+    * ``(e) =>`` - Arrow function; whatever the user has just typed.
+    * ``setGuess(e.target.value)`` - Calls the setGuess function and updates the guess with what the user has typed. The element that is going to trigger the event is <input> and the value is whatever the user types in the empty guess box.
+    * ``placeholder="Type your guess"`` - The empty guess box has a placeholder text that tells the user to type their guess.
+*  ``<button onClick={checkGuess}>Check</button>`` - The button runs the checkGuess function when clicked to see if the guess match the word.
 
-<!--
-* Links you used today (websites, videos, etc)
-* Things you tried, progress you made, etc
-* Challenges, a-ha moments, etc
-* Questions you still have
-* What you're going to try next
--->
+Below is the full tinkering:
+
+```js
+<!-- HTML -->
+<div id="root"></div>
+
+<!-- React Code -->
+<script type = "text/babel">
+    function Guessing(){
+        const[guess, setGuess] = React.useState("");
+
+        function checkGuess(){
+            if (guess.toUpperCase() === "WORDLE"){
+                alert("You guessed the word!");
+            }   else{
+                alert("Try again!");
+            }
+        }
+
+        return(
+            <div>
+                <input
+                    type="text"
+                    value={guess}
+                    onChange={(e) => setGuess(e.target.value)}
+                    placeholder="Type your guess"
+                />
+                <button onClick={checkGuess}>Check</button>
+            </div>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Guessing />);
+</script>
+```
+
+Result:
+
+<img width="900" height="172" alt="Screenshot 2025-11-02 8 38 26 PM" src="https://github.com/user-attachments/assets/00e28561-cb41-49bb-bca2-36573a6324c6" />
+<img width="900" height="172" alt="Screenshot 2025-11-02 8 34 52 PM" src="https://github.com/user-attachments/assets/ba813dd1-3841-4310-a582-df90b2621f4b" />
+
+<hr>
 
 ### X/X/XX:
 * Text
