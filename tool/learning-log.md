@@ -58,7 +58,7 @@ The result of the code:
 <img width="211" height="235" alt="Screenshot 2025-10-05 4 14 14 PM" src="https://github.com/user-attachments/assets/01708fa1-5714-46ce-aef7-85bdd6118f86" />
 
 ### 10/27/2025:
-* 
+* Experimenting with React JS using conditionals and using one of React component.
 
 
 <!--
