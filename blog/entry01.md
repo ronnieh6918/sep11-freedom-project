@@ -1,7 +1,11 @@
 # Entry 1
-##### X/X/XX
+##### 11/3/2025
 
-Text
+# Context:
+# EDP:
+# Skills:
+* 
+
 
 [Next](entry02.md)
 
