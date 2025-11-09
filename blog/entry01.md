@@ -5,6 +5,40 @@
 For this freedom project, I want to design a remix of the Wordle App for the purpose of entertainment and also educating users who want to build on their vocabulary by guessing new words and also taking the time to learn them if they want. To prepare on building this Wordle Remix, I am going to use [**React JS**](https://react.dev/learn) and applying Javascript like functions, arrays, conditions, loops, etc... by learning from [**FreeCodeCamp**](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures#basic-javascript).
 
 # Content:
+I started tinkering with one of **React's Hook, React-controlled inputs, and Event binding.** I also used **conditionals** and **arrays** along with **functions**. 
+
+Below is how I tinkered: 
+<!-- React Code -->
+```
+<script type = "text/babel">
+    function Guessing(){
+        const[guess, setGuess] = React.useState("");
+
+        function checkGuess(){
+            if (guess.toUpperCase() === "WORDLE"){
+                alert("You guessed the word!");
+            }   else{
+                alert("Try again!");
+            }
+        }
+
+        return(
+            <div>
+                <input
+                    type="text"
+                    value={guess}
+                    onChange={(e) => setGuess(e.target.value)}
+                    placeholder="Type your guess"
+                />
+                <button onClick={checkGuess}>Check</button>
+            </div>
+        );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(<Guessing />);
+</script>
+```
 
 # EDP: 
 I am on stage 1 of the Engineering Design Process: Define my problem. **I want to focus my app on education and entertainment because I find that users, including me, often get bored and play gaming apps, and as much as I love playing games since they bring me a lot of entertainment. Not all games are created for educational purposes. So, in the end, I want to make my own wordle remix app which can help me and other users who want to learn while also having fun.** 
