@@ -2,7 +2,7 @@
 ##### 11/3/2025
 
 # Context: 
-For this freedom project, I want to design a remix of the Wordle App for the purpose of entertainment and also educating users who want to build on their vocabulary by guessing new words and also taking the time to learn them if they want. To prepare on building this Wordle Remix, I am going to use [**React JS**](https://react.dev/learn) and applying Javascript like functions, arrays, conditions, loops, etc... by learning from [**FreeCodeCamp**](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures#basic-javascript).
+For this freedom project, I want to design a remix of the Wordle App for the purpose of entertainment and also educating users who want to build on their vocabulary by guessing new words and also taking the time to learn them if they want. To prepare on building this Wordle Remix, I am going to use [**React JS**](https://react.dev/learn) because it is a tool that enhances Javascript codes and good tool for handling events. Hence, since React works well with Javascript, I can apply Javascript codes like functions, arrays, conditions, loops, etc... by learning from [**FreeCodeCamp**](https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures#basic-javascript).
 
 # Content:
 I started tinkering with one of **React's Hook, React-controlled inputs, and Event binding.** I also used **conditionals** and **arrays** along with **functions**. 
