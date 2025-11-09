@@ -8,6 +8,7 @@ For this freedom project, I want to design a remix of the Wordle App for the pur
 I started tinkering with one of **React's Hook, React-controlled inputs, and Event binding.** I also used **conditionals** and **arrays** along with **functions**. 
 
 Below is how I tinkered: 
+
 <!-- React Code -->
 ```
 <script type = "text/babel">
@@ -39,6 +40,10 @@ Below is how I tinkered:
     root.render(<Guessing />);
 </script>
 ```
+
+Result:
+
+<img width="819" height="316" alt="Screenshot 2025-11-09 4 29 23 PM" src="https://github.com/user-attachments/assets/cc9f77f3-f2b5-43eb-96cd-b508aff49481" />
 
 # EDP: 
 I am on stage 1 of the Engineering Design Process: Define my problem. **I want to focus my app on education and entertainment because I find that users, including me, often get bored and play gaming apps, and as much as I love playing games since they bring me a lot of entertainment. Not all games are created for educational purposes. So, in the end, I want to make my own wordle remix app which can help me and other users who want to learn while also having fun.** 
