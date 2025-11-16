@@ -117,8 +117,23 @@ Result:
 
 <hr>
 
-### X/X/XX:
-* Text
+### 11/6/2025:
+* Experimenting with React JS using conditionals and loops.
+
+### Notes:
+*
+*
+*
+
+Below is the full tinkering:
+```js
+
+```
+
+Result:
+
+<img>
+<img>
 
 
 <!--
