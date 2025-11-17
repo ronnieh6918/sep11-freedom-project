@@ -24,33 +24,44 @@
         <div id="root"></div>
 
         <!-- React Code -->
-        <script type = "text/babel">
-            function Guessing(){
-                const[guess, setGuess] = React.useState("");
+        <script type="text/babel">
+          function Guessing() {
+            const [guess, setGuess] = React.useState("");       // Current guess input
+            const [history, setHistory] = React.useState([]);   // Stores all past guesses
+            const secret = "WORDLE";                            // 6-letter secret word
 
-                function checkGuess(){
-                    if (guess.toUpperCase() === "WORDLE"){
-                        alert("You guessed the word!");
-                    }   else{
-                        alert("Try again!");
-                    }
-                }
-
-                return(
-                    <div>
-                        <input
-                            type="text"
-                            value={guess}
-                            onChange={(e) => setGuess(e.target.value)}
-                            placeholder="Type your guess"
-                        />
-                        <button onClick={checkGuess}>Check</button>
-                    </div>
-                );
+            function checkGuess() {
+              if (!guess) return;                               // Ignore empty input
+              setHistory([...history, guess.toUpperCase()]);    // Add guess to history
+              setGuess("");                                     // Clear input for next guess
             }
 
-            const root = ReactDOM.createRoot(document.getElementById("root"));
-            root.render(<Guessing />);
+              return (
+              <div style={{ fontFamily: "Arial", padding: "20px" }}>
+                <h2>6-Letter Word Guessing Game</h2>
+
+                <input
+                  type="text"
+                  value={guess}
+                  onChange={(e) => setGuess(e.target.value)}
+                  maxLength={6}           // Limit input to 6 letters
+                  placeholder="Type 6 letters"
+                />
+                <button onClick={checkGuess}>Check</button>
+
+                <h3>Guess History:</h3>
+                {history.map((g, i) => (
+                  <p key={i}>
+                    {g === secret ? "Correct!" : "Wrong!"} — {g}
+                  </p>
+                ))}
+            </div>
+            );
+          }
+
+          const root = ReactDOM.createRoot(document.getElementById("root"));
+          root.render(<Guessing />);
+
         </script>
     </body>
 </html>
