@@ -28,7 +28,14 @@
           function Guessing() {
             const [guess, setGuess] = React.useState("");       // Current guess input
             const [history, setHistory] = React.useState([]);   // Stores all past guesses
-            const secret = "WORDLE";                            // 6-letter secret word
+            const secret = "WORDLE";                           // 6-letter secret word
+
+            // React useEffect - Another type of React Hook
+            React.useEffect(() => {
+              if(history.includes(secret)) {
+                alert("You guessed the word!!");
+              }
+            } ,[history]);
 
             function checkGuess() {
               if (!guess) return;                               // Ignore empty input
@@ -36,7 +43,7 @@
               setGuess("");                                     // Clear input for next guess
             }
 
-              return (
+            return (
               <div style={{ fontFamily: "Arial", padding: "20px" }}>
                 <h2>6-Letter Word Guessing Game</h2>
 
@@ -51,7 +58,13 @@
 
                 <h3>Guess History:</h3>
                 {history.map((g, i) => (
-                  <p key={i}>
+                  <p
+                    key={i}
+                    style={{
+                      color: g == secret ? "green" : "red",                 // display green for correct, red for wrong
+                      fontWeight: g === secret ? "bold" : "normal"          // bold the correct guess
+                    }}
+                  >
                     {g === secret ? "Correct!" : "Wrong!"} — {g}
                   </p>
                 ))}
