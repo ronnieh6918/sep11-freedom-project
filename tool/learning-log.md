@@ -180,7 +180,7 @@ Result:
 <hr>
 
 ### 11/22/2025:
-* Experimenting with ReactJS by trying out another React Hook, testing out dynamic styling within ternaries, understanding different between conditional rendering vs. dynamic styling.
+* Experimenting with React JS by trying out another React Hook, testing out dynamic styling within ternaries, understanding different between conditional rendering vs. dynamic styling.
 
 ### Notes:
 * ``React.useEffect(() => { if (history.includes(secret)) { alert("You guessed the word!!"); } }, [history]);`` - useEffect runs every render when state changes, the history array is the state being tracked, secret is a constant that does not change, and when the user guess the secret word it will triger a side effect (alerting the user their correct guess, a javascript code that displays temporarily).
@@ -252,6 +252,9 @@ Below is the tinkering:
 
 Results:
 
+<img width="905" height="259" alt="Screenshot 2025-11-22 10 28 45 PM" src="https://github.com/user-attachments/assets/7c533287-452b-4402-b69c-6b8549ba616e" />
+
+<img width="433" height="182" alt="Screenshot 2025-11-22 10 29 14 PM" src="https://github.com/user-attachments/assets/f55f421a-84a1-450d-8990-41b79d7b992a" />
 
 
 
