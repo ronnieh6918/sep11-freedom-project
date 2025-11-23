@@ -118,7 +118,7 @@ Result:
 <hr>
 
 ### 11/6/2025:
-* Experimenting with React JS trying out Loops in JSX, Conditional rendering, Immuntable updates of state, Multi-character string input, and JSX inline styling.
+* Experimenting with React JS trying out Loops in JSX, using Ternary operator, Immuntable updates of state, Multi-character string input, and JSX inline styling.
 
 ### Notes:
 * ``React.useState([])`` - An array to stores all previous guesses.
@@ -128,7 +128,7 @@ Result:
 * ``setGuess("")`` - After the old guess is stored into history, setGuess will clear and become an empty string for a new updated guess.
 * ``{history.map((g, i) => (JSX))}`` - Looping over state since history is kept in track inside of an array that has all the stored past guesses, ``.map`` is used to check the history array one by one according to (element, index), in this case every guess is now "g" and with their assigned index "i".
 * ``<p key={i}> </p>`` - Indentifies all the guesses in history array by their index from past to recent.
-* ``{g === secret ? "Correct!" : "Wrong!"} — {g}`` - Conditional Rendering checks each guess and comparing it to secret (``condition ? valueIfTrue : valueIfFalse`` is an ternary operator which checks that if conditional is true, then separate value that is true from values that are false, and then render it onto user's screen). ``-{g}`` displays the user's exact guess.
+* ``{g === secret ? "Correct!" : "Wrong!"} — {g}`` - Checks each guess and comparing it to secret (``condition ? valueIfTrue : valueIfFalse`` is an ternary operator which checks that if conditional is true, then separate value that is true from values that are false, and then render it onto user's screen). ``-{g}`` displays the user's exact guess.
 * ``<div style={{ fontFamily: "Arial", padding: "20px" }}>`` - using JSX syntax (``{{}}``) to style with CSS within an inline of HTML element.
 
 Below is the full tinkering:
@@ -178,6 +178,84 @@ Result:
 <img width="426" height="183" alt="Screenshot 2025-11-16 11 08 38 PM" src="https://github.com/user-attachments/assets/e41265b6-50d3-48ef-8f4a-2918daa92832" />
 
 <hr>
+
+### 11/22/2025:
+* Experimenting with ReactJS by trying out another React Hook, testing out dynamic styling within ternaries, understanding different between conditional rendering vs. dynamic styling.
+
+### Notes:
+* ``React.useEffect(() => { if (history.includes(secret)) { alert("You guessed the word!!"); } }, [history]);`` - useEffect runs every render when state changes, the history array is the state being tracked, secret is a constant that does not change, and when the user guess the secret word it will triger a side effect (alerting the user their correct guess, a javascript code that displays temporarily).
+* ``<p key={i} style={{color: g === secret ? "green" : "red",`` - This first half of the code uses dynamic styling to permanently display the color of the secret word green and any wrong guess into red.
+* ``fontWeight: g === secret ? "bold" : "normal" }} >`` - This code uses dynamic styling to permanently display the secret word bolded, while every other wrong guess as normal.
+- Dynamic style is used here because the state that is changing is history because history is being rendered, history array is being checked to find the secret word (referring back to ``history.map()``).
+
+#### Important things to remember:
+
+* **State is what is being changed** (Examples: the data for guess inputs and history list).
+* **Conditional rendering depends on the state to decide whether an element exists at all, often displayed as temporary messages or elements** (Elements will render temporarily on screen as state changes, combines Conditional + HTML - Learn about more in LL5).
+* **Dynamic styling depends on the state to change how an element looks, but the element always exist** (Elements will render permanently on screen, styling with JSX + CSS).
+* **Dynamic styling is often used in ternaries or expressions, but it doesn't have to be fully within a conditional JSX (conditional operators)!**
+
+Below is the tinkering:
+```js
+<script type="text/babel">
+  function Guessing() {
+    const [guess, setGuess] = React.useState("");       // Current guess input
+    const [history, setHistory] = React.useState([]);   // Stores all past guesses
+    const secret = "WORDLE";                            // 6-letter secret word
+
+    // React useEffect - Another type of React Hook
+    React.useEffect(() => {
+      if(history.includes(secret)) {
+        alert("You guessed the word!!");
+      }
+    } ,[history]);
+
+    function checkGuess() {
+      if (!guess) return;                               // Ignore empty input
+      setHistory([...history, guess.toUpperCase()]);    // Add guess to history
+      setGuess("");                                     // Clear input for next guess
+    }
+
+    return (
+      <div style={{ fontFamily: "Arial", padding: "20px" }}>
+        <h2>6-Letter Word Guessing Game</h2>
+
+        <input
+          type="text"
+          value={guess}
+          onChange={(e) => setGuess(e.target.value)}
+          maxLength={6}                                  // Limit input to 6 letters
+          placeholder="Type 6 letters"
+        />
+        <button onClick={checkGuess}>Check</button>
+
+        <h3>Guess History:</h3>
+        {history.map((g, i) => (
+          <p
+            key={i}
+            style={{
+              color: g == secret ? "green" : "red",                 // Display green for correct, red for wrong
+              fontWeight: g === secret ? "bold" : "normal"          // Bold the correct guess
+            }}
+          >
+            {g === secret ? "Correct!" : "Wrong!"} — {g}
+          </p>
+        ))}
+    </div>
+    );
+  }
+
+  const root = ReactDOM.createRoot(document.getElementById("root"));
+  root.render(<Guessing />);
+</script>
+```
+
+Results:
+
+
+
+
+
 
 ### ##/#/#:
 
