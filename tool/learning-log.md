@@ -336,6 +336,8 @@ root.render(<Guessing />);
 </script>
 ```
 
+Result:
+
 <img width="424" height="201" alt="Screenshot 2025-12-07 11 20 31 PM" src="https://github.com/user-attachments/assets/2dd4daf3-b143-493f-ae15-ea31ef173851" />
 
 **Goal for LL6**: Even if message acts as a instruction for user to type a word that should be 6 letters. Next time, make the user repeat their guess again if they make a slight typo, but try not displaying the 1-5 letter word into guess history. 
