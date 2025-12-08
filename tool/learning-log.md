@@ -338,7 +338,7 @@ root.render(<Guessing />);
 
 <img width="424" height="201" alt="Screenshot 2025-12-07 11 20 31 PM" src="https://github.com/user-attachments/assets/2dd4daf3-b143-493f-ae15-ea31ef173851" />
 
-Goal for next LL6: Even if message acts as a instruction for user to type a word that's 1-5 letters, make user repeat again after making a typo with their guess, but don't display the 1-5 letter word into guess history. 
+**Goal for LL6**: Even if message acts as a instruction for user to type a word that should be 6 letters. Next time, make the user repeat their guess again if they make a slight typo, but try not displaying the 1-5 letter word into guess history. 
 
 <img width="424" height="145" alt="Screenshot 2025-12-07 11 26 28 PM" src="https://github.com/user-attachments/assets/f74294e0-c257-4a9f-9c14-b967c8994b80" />
 
