@@ -257,8 +257,87 @@ Results:
 <img width="433" height="182" alt="Screenshot 2025-11-22 10 29 14 PM" src="https://github.com/user-attachments/assets/f55f421a-84a1-450d-8990-41b79d7b992a" />
 
 
+<hr>
+
+### 12/7/2025:
+* Experimenting with ReactJS by using conditional rendering to show messages based on user input and creating a separate component to display those messages, which makes the code more organized and reusable.
+
+### Notes:
+* ``function Message({ text }) {return <p style={{ color: "orange", fontWeight: "bold" }}>{text}</p>;}`` - **Creates a separate component containing a prop, not a state. The prop text is instructed to contain a orange bolded message.**
+* ``{guess.length > 0 && guess.length < 6 && <Message text="Word must be 6 letters!" />}`` - A form of conditional rendering (decides whether user sees something on the screen based on what state is being rendered onto the user's screen, **props aren't the data changing so it is not the ones that is going to be rendered on the user's screen, they are just what should be added to display**). The code here is checking if user typed a word that only contain 1-5 letters, then runs a message saying that user would need to retype a word consisting of 6 letters (acts like an alert) when condition is false.
+
+#### Important Notes to remember:
+* When we created the separate component message, the text prop is passed onto the message component. **Props are what the component is going to be used for (often times as data)**, in this case it runs through the line of conditional rendering, if evaluated true (word is exactly 6 letters), it will run the Message component, which uses text data as a prop to display on the user's page.
+* JS comments is very unique when using React. Since when we deal with JSX component like ``return(JSX)`` block, we use ``{/* */}`` as JSX comments because React will generally ignore it. Bringing back this because the comment I used is inside of ``return()``, so you can't use ``// comments``, since **React expects JSX elements or expressions and not Javascript comments.** So when used directly inside JSX, it will cause an error.
+* State and Props differ because **state is data that belongs to a component but that data changes. However, prop are data that a component recieves from outside like directions for what is to be display, the data will not change.**
+
+```js
+<script type="text/babel">
+
+// New reusable component
+function Message({ text }) {
+  return <p style={{ color: "orange", fontWeight: "bold" }}>{text}</p>;
+}
+
+function Guessing() {
+  const [guess, setGuess] = React.useState("");       // Current guess input
+  const [history, setHistory] = React.useState([]);   // Stores all past guesses
+  const secret = "WORDLE";                            // 6-letter secret word
 
 
+  React.useEffect(() => {
+    if(history.includes(secret)) {
+      alert("You guessed the word!!");
+    }
+  }, [history]);
+
+  function checkGuess() {
+    if (!guess) return;                               // Ignore empty input
+    setHistory([...history, guess.toUpperCase()]);    // Add guess to history
+    setGuess("");                                     // Clear input for next guess
+  }
+
+  return (
+    <div style={{ fontFamily: "Arial", padding: "20px" }}>
+      <h2>6-Letter Word Guessing Game</h2>
+
+      <input
+        type="text"
+        value={guess}
+        onChange={(e) => setGuess(e.target.value)}
+        maxLength={6}                                  // Limit input to 6 letters
+        placeholder="Type 6 letters"
+      />
+
+      {/* Conditional rendering: show hint if guess is too short */}
+      {guess.length > 0 && guess.length < 6 && <Message text="Word must be 6 letters!" />}
+
+      <button onClick={checkGuess}>Check</button>
+
+      <h3>Guess History:</h3>
+      {history.map((g, i) => (
+        <p
+          key={i}
+          style={{
+            color: g === secret ? "green" : "red",
+            fontWeight: g === secret ? "bold" : "normal"
+          }}
+        >
+          {g === secret ? "Correct!" : "Wrong!"} — {g}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Guessing />);
+
+</script>
+```
+
+
+<hr>
 
 ### ##/#/#:
 
