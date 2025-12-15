@@ -32,9 +32,9 @@
         }
 
         function Guessing() {
-          const [guess, setGuess] = React.useState("");       // Current guess input
-          const [history, setHistory] = React.useState([]);   // Stores all past guesses
-          const secret = "WORDLE";                            // 6-letter secret word
+          const [guess, setGuess] = React.useState("");       
+          const [history, setHistory] = React.useState([]);
+          const secret = "WORDLE";
 
 
           React.useEffect(() => {
@@ -44,9 +44,9 @@
           }, [history]);
 
           function checkGuess() {
-            if (!guess) return;                               // Ignore empty input
-            setHistory([...history, guess.toUpperCase()]);    // Add guess to history
-            setGuess("");                                     // Clear input for next guess
+            if (!guess || guess.length !==6) return;          // If input isn't an empty string nor if word length is not 6, return nothing
+            setHistory([...history, guess.toUpperCase()]);    // If input is at least 6 letters, then save it to History list
+            setGuess("");                                     // Update input box for next guess
           }
 
           return (
@@ -57,7 +57,7 @@
                 type="text"
                 value={guess}
                 onChange={(e) => setGuess(e.target.value)}
-                maxLength={6}                                  // Limit input to 6 letters
+                maxLength={6}
                 placeholder="Type 6 letters"
               />
 
