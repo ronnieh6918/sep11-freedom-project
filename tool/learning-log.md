@@ -338,13 +338,90 @@ root.render(<Guessing />);
 
 <img width="424" height="201" alt="Screenshot 2025-12-07 11 20 31 PM" src="https://github.com/user-attachments/assets/2dd4daf3-b143-493f-ae15-ea31ef173851" />
 
-**Goal for LL6**: Even if message acts as a instruction for user to type a word that should be 6 letters. Next time, make the user repeat their guess again if they make a slight typo, but try not displaying the 1-5 letter word into guess history. 
+**Goal for LL6**: Even if message acts as a instruction for user to type a word that should be 6 letters. Next time, make the user repeat their guess again if they make a slight typo, but try not displaying the 1-5 letter word into guess history.
 
 <img width="424" height="145" alt="Screenshot 2025-12-07 11 26 28 PM" src="https://github.com/user-attachments/assets/f74294e0-c257-4a9f-9c14-b967c8994b80" />
 
 <hr>
 
-### ##/#/#:
+### 12/4/2025:
+* Resolving issues with current code like when user inputs a word that is not 6 letters and still shows up in the history list.
+
+### Notes:
+No new ReactJS components today, just basic javascript to refractor my code.
+* ``if (!guess || guess.length !== 6) return;`` - if guess is an empty string or if the length of guess is not 6 letters, then return...
+#### Review:
+* ``setHistory([...history, guess.toUppercase()]);`` - update guess into history array and make it shown as uppercase even if user typed guess in lowercase.
+* ``setGuess("");`` - clears the input box, so user can input a new guess
+* ``!==`` - not equal strict operator, so if input isn't equal to the expression, then the condition will become true (for example, if 6 is not equal to 5, the condition is going to be true regardless).
+
+
+Here is my new code:
+```js
+<script type="text/babel">
+
+// New reusable component
+function Message({ text }) {
+  return <p style={{ color: "orange", fontWeight: "bold" }}>{text}</p>;
+}
+
+function Guessing() {
+  const [guess, setGuess] = React.useState("");
+  const [history, setHistory] = React.useState([]);
+  const secret = "WORDLE";
+
+
+  React.useEffect(() => {
+    if(history.includes(secret)) {
+      alert("You guessed the word!!");
+    }
+  }, [history]);
+
+  function checkGuess() {
+    if (!guess || guess.length !==6) return;          // If condition is TRUE; input isn't an empty string nor length is not 6 letters then...
+    setHistory([...history, guess.toUpperCase()]);    // If input is at least 6 letters, then save it to History list
+    setGuess("");                                     // Update input box for next guess
+  }
+
+  return (
+    <div style={{ fontFamily: "Arial", padding: "20px" }}>
+      <h2>6-Letter Word Guessing Game</h2>
+
+      <input
+        type="text"
+        value={guess}
+        onChange={(e) => setGuess(e.target.value)}
+        maxLength={6}
+        placeholder="Type 6 letters"
+      />
+
+      {/* Conditional rendering: show hint if guess is too short */}
+      {guess.length > 0 && guess.length < 6 && <Message text="Word must be 6 letters!" />}
+
+      <button onClick={checkGuess}>Check</button>
+
+      <h3>Guess History:</h3>
+      {history.map((g, i) => (
+        <p
+          key={i}
+          style={{
+            color: g === secret ? "green" : "red",
+            fontWeight: g === secret ? "bold" : "normal"
+          }}
+        >
+          {g === secret ? "Correct!" : "Wrong!"} — {g}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Guessing />);
+
+</script>
+```
+
 
 
 
