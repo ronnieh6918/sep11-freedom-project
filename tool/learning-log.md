@@ -424,7 +424,14 @@ root.render(<Guessing />);
 </script>
 ```
 
+Result:
+<img width="420" height="216" alt="Screenshot 2025-12-14 7 42 23 PM" src="https://github.com/user-attachments/assets/19e5b0c0-23dc-4f35-b0b3-ef112b1b1c72" />
 
+* Now when user makes a typo, nothing will show up if input is empty or if word does not match 6 letter. Pressing check will NOT SAVE into history array if word does not meet those conditions.
+
+<img width="420" height="216" alt="Screenshot 2025-12-14 7 42 32 PM" src="https://github.com/user-attachments/assets/56c7960b-14fa-442e-b78a-34b1c441fdc8" />
+
+* If guess meets these conditions, then pressing check will save the 6 letter word into History List.
 
 
 <!--
