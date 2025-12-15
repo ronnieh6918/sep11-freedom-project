@@ -347,7 +347,7 @@ Result:
 <hr>
 
 ### 12/4/2025:
-* Resolving issues with current code like when user inputs a word that is not 6 letters and still shows up in the history list.
+* **Resolving issues with current code like when user inputs a word that is not 6 letters and still shows up in the history list.**
 
 ### Notes:
 No new ReactJS components today, just basic javascript to refractor my code.
@@ -358,7 +358,7 @@ No new ReactJS components today, just basic javascript to refractor my code.
 * ``!==`` - not equal strict operator, so if input isn't equal to the expression, then the condition will become true (for example, if 6 is not equal to 5, the condition is going to be true regardless).
 
 
-Here is my new code:
+**Here is my new code:**
 ```js
 <script type="text/babel">
 
@@ -424,7 +424,8 @@ root.render(<Guessing />);
 </script>
 ```
 
-Result:
+**Result:**
+
 <img width="420" height="216" alt="Screenshot 2025-12-14 7 42 23 PM" src="https://github.com/user-attachments/assets/19e5b0c0-23dc-4f35-b0b3-ef112b1b1c72" />
 
 * Now when user makes a typo, nothing will show up if input is empty or if word does not match 6 letter. Pressing check will NOT SAVE into history array if word does not meet those conditions.
@@ -433,6 +434,9 @@ Result:
 
 * If guess meets these conditions, then pressing check will save the 6 letter word into History List.
 
+<hr>
+
+### ##/##/####:
 
 <!--
 * Links you used today (websites, videos, etc)
