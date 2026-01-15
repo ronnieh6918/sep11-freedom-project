@@ -440,15 +440,88 @@ root.render(<Guessing />);
 * Adding **onKeyDown** so user can submit guess when pressing enter key instead of clicking the check button. Using **Dynamic history state rendering** to display the total number of guesses the user has guessed so far.
 
 ### Notes:
-* ``onKeyDown = {(e) => e.key === "Enter" && checkGuess()}`` -
-* ``<p>Total guesses: {history.length}</p>`` -
+* ``onKeyDown = {(e) => e.key === "Enter" && checkGuess()}`` - ``onKeyDown`` is a React event handler, it signals something to happen as a key is pressed. ``e.key === "inputKey"`` checks for which exact key is pressed. Then lastly, after that key is pressed, you want to consider what are you going to do afterwards? ``&& checkGuess()`` can be interpreted as "and then..." call the checkGuess component and check guess then update both the guess (reset whenever user inputs a guess) and history state (show the guess in history).
+* ``<p>Total guesses: {history.length}</p>`` - Using JSX, a paragraph element to display as text on the user's screen and javascript to display the items in the history array because ``history.length`` in this case the length is always one index higher than the last guess which means it's going to include everything in the array, but it will not affect the code when displaying the total items since the index of the array length is not holding any element or guess, so it won't add a ghostly count to the total guess.
 
-Below is my code:
+**Below is my code:**
 
 ```js
+<script type="text/babel">
 
+// New reusable component
+function Message({ text }) {
+  return <p style={{ color: "orange", fontWeight: "bold" }}>{text}</p>;
+}
+
+function Guessing() {
+  const [guess, setGuess] = React.useState("");
+  const [history, setHistory] = React.useState([]);
+  const secret = "WORDLE";
+
+
+  React.useEffect(() => {
+    if(history.includes(secret)) {
+      alert("You guessed the word!!");
+    }
+  }, [history]);
+
+  function checkGuess() {
+    if (!guess || guess.length !==6) return;          // If input isn't an empty string nor if word length is not 6, return nothing
+    setHistory([...history, guess.toUpperCase()]);    // If input is at least 6 letters, then save it to History list
+    setGuess("");                                     // Update input box for next guess
+  }
+
+  return (
+    <div style={{ fontFamily: "Arial", padding: "20px" }}>
+      <h2>6-Letter Word Guessing Game</h2>
+
+      <input
+        type="text"
+        value={guess}
+        onChange={(e) => setGuess(e.target.value)}
+        maxLength={6}
+        placeholder="Type 6 letters"
+        onKeyDown={(e) => e.key === "Enter" && checkGuess()}      // Press Enter Key to submit guess
+      />
+
+      {/* Conditional rendering: show hint if guess is too short */}
+      {guess.length > 0 && guess.length < 6 && <Message text="Word must be 6 letters!" />}
+
+      <button onClick={checkGuess}>Check</button>
+
+      {/* Display total # of Guesses so far */}
+      <p>Total guess: {history.length}</p>
+
+      <h3>Guess History:</h3>
+      {history.map((g, i) => (
+        <p
+          key={i}
+          style={{
+            color: g === secret ? "green" : "red",
+            fontWeight: g === secret ? "bold" : "normal"
+          }}
+        >
+          {g === secret ? "Correct!" : "Wrong!"} — {g}
+        </p>
+      ))}
+    </div>
+  );
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(<Guessing />);
+
+</script>
 ```
 
+**Result:**
+
+<img width="405" height="230" alt="Screenshot 2026-01-14 11 59 06 PM" src="https://github.com/user-attachments/assets/f56ff729-215b-4da8-8d45-bcd9651aefa8" />
+
+* Display # of guess
+* Pressing enter key will check the guess
+
+<hr>
 
 <!--
 * Links you used today (websites, videos, etc)
