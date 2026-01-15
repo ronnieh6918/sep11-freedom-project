@@ -32,7 +32,7 @@
         }
 
         function Guessing() {
-          const [guess, setGuess] = React.useState("");       
+          const [guess, setGuess] = React.useState("");
           const [history, setHistory] = React.useState([]);
           const secret = "WORDLE";
 
@@ -59,12 +59,16 @@
                 onChange={(e) => setGuess(e.target.value)}
                 maxLength={6}
                 placeholder="Type 6 letters"
+                onKeyDown={(e) => e.key === "Enter" && checkGuess()}      // Press Enter Key to submit guess
               />
 
               {/* Conditional rendering: show hint if guess is too short */}
               {guess.length > 0 && guess.length < 6 && <Message text="Word must be 6 letters!" />}
 
               <button onClick={checkGuess}>Check</button>
+
+              {/* Display total # of Guesses so far */}
+              <p>Total guess: {history.length}</p>
 
               <h3>Guess History:</h3>
               {history.map((g, i) => (
