@@ -436,7 +436,19 @@ root.render(<Guessing />);
 
 <hr>
 
-### ##/##/####:
+### 1/14/2026
+* Adding **onKeyDown** so user can submit guess when pressing enter key instead of clicking the check button. Using **Dynamic history state rendering** to display the total number of guesses the user has guessed so far.
+
+### Notes:
+* ``onKeyDown = {(e) => e.key === "Enter" && checkGuess()}`` -
+* ``<p>Total guesses: {history.length}</p>`` -
+
+Below is my code:
+
+```js
+
+```
+
 
 <!--
 * Links you used today (websites, videos, etc)
