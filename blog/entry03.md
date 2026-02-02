@@ -1,7 +1,15 @@
 # Entry 3
-##### X/X/XX
+##### 2/2/2026
 
-Text
+# Context:
+
+# Content:
+
+# Engineering Design Process; 
+
+# Skills:
+* ****
+* ****
 
 [Previous](entry02.md) | [Next](entry04.md)
 
