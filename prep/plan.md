@@ -1,7 +1,7 @@
 # Plan
 
-## Tool: 
-## Product: 
+## Tool: ReactJS
+## Product: Remix Wordle App
 
 ---
 
@@ -9,13 +9,28 @@
 
 #### MVP
 
-- [ ] Task (deadline: X)
-  - [ ] Subtask (deadline: X)
+- [ ] Task (deadline: 4/10)
+*
+*
+*
+
+  - [ ] Subtask (deadline: 3/15)
+* Create a separate webpage to link my app --> (format: intro, app, conclusion)
+  * Include: html (paragraph, heading, list)
+  * CSS (Font-family, text decoration, background, margin, padding, etc...)
+  * Making bootstrap work (adding components like a navbar, carousel, etc...)
+* After finishing: Put a link lead directly to my app
 
 #### Beyond MVP
 
 - [ ] Task
+* Adding in hints as user guesses
+* Add a separate remix allowing a 7 letter word
+
   - [ ] Subtask
+* Creating a section for Survey
+* Copyright detail on the buttom of the webpage
+
 
 
 <!-- EXAMPLE
@@ -49,7 +64,7 @@
 
 <!-- DO NOT USE THIS YET
 
-#### Peer Feedback 
+#### Peer Feedback
 
 | Name | Glows | Grows |
 | -------- | ------- | ------- |
