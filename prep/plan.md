@@ -41,7 +41,7 @@
 
 - [ ] Subtask (After I finish MVP)
 * [ ] Creating a section for Survey (Purpose: Feedback on my code) - [3/17-3/18]
-* [ ]Copyright detail on the buttom of the webpage - [3/19]
+* [ ] Copyright detail on the buttom of the webpage - [3/19]
 
 
 
