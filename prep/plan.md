@@ -9,27 +9,36 @@
 
 #### MVP
 
-- [ ] Task (deadline: 4/10)
-*
-*
-*
+- [ ] Task (deadline: 3/19 with beyond MVP)
+* Minimial Viable Product (Priority!)
+  * Main webpage that will include my project
+    * [ ] Include what I already know ReactJS (state, conditional rendering, prop, dynamic styling, etc..) - [2/20-3/15]
+      * [ ] When the user puts a guess, tell user if guess is correct or wrong then reset the guess state (useState) - [2/16]
+      * [ ] Make sure function can check if guess matches the secret word - [2/16-2/18]
+      * [ ] Render if input matches secret word, inform user that it's correct otherwise wrong (tenary operator) - [2/19-2/20]
+      * [ ] Create a separate array called history to save guess input (history state) - [2/21-2/22]
+      * [ ] Also make sure user can only input a 6 letter word (word length [set certain conditions]) - [2/21]
+      * [ ] Add any other necessary function with the concept I learned from ReactJS (After I finish subtask, continue working) - [3/2-3/9]
 
-  - [ ] Subtask (deadline: 3/15)
-* Create a separate webpage to link my app --> (format: intro, app, conclusion)
-  * Include: html (paragraph, heading, list)
-  * CSS (Font-family, text decoration, background, margin, padding, etc...)
-  * Making bootstrap work (adding components like a navbar, carousel, etc...)
-* After finishing: Put a link lead directly to my app
+
+  - [ ] Subtask (deadline: 3/1)
+* [ ] Create a separate webpage to link my app --> (format: intro, app, conclusion)
+  * [ ] Include: HTML (paragraph, heading, list) - [2/21-2/24]
+      * [ ] Focus heavily on what inspired me a Wordle Remix, benefits (pros and cons), and why I ultimately chose React as my main tool
+  * [ ] CSS (Font-family, text decoration, background, margin, padding, etc...) - [2/25-2/26]
+  * [ ] Making bootstrap work (adding components like a navbar, carousel, etc...) - [2/27-29]
+* [ ] After finishing webpage - Put a link lead directly to my app - [2/30]
+* [ ] Fix bugs - [3/1]
 
 #### Beyond MVP
 
-- [ ] Task
-* Adding in hints as user guesses
-* Add a separate remix allowing a 7 letter word
+- [ ] Task (After I finish MVP)
+* [ ] Adding in hints as user guesses - [3/11-3/13]
+* [ ] Add a separate remix allowing a 7 letter word - [3/14-3/16]
 
-  - [ ] Subtask
-* Creating a section for Survey
-* Copyright detail on the buttom of the webpage
+  - [ ] Subtask (After I finish MVP)
+* [ ] Creating a section for Survey (Purpose: Feedback on my code) - [3/17-3/18]
+* [ ]Copyright detail on the buttom of the webpage - [3/19]
 
 
 
