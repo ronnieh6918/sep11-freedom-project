@@ -21,7 +21,7 @@
       * [ ] Add any other necessary function with the concept I learned from ReactJS (After I finish subtask, continue working) - [3/2-3/9]
 
 
-  - [ ] Subtask (deadline: 3/1)
+- [ ] Subtask (deadline: 3/1)
 * [ ] Create a separate webpage to link my app --> (format: intro, app, conclusion)
   * [ ] Include: HTML (paragraph, heading, list) - [2/21-2/24]
       * [ ] Focus heavily on what inspired me a Wordle Remix, benefits (pros and cons), and why I ultimately chose React as my main tool
@@ -30,13 +30,16 @@
 * [ ] After finishing webpage - Put a link lead directly to my app - [2/30]
 * [ ] Fix bugs - [3/1]
 
+
 #### Beyond MVP
+
 
 - [ ] Task (After I finish MVP)
 * [ ] Adding in hints as user guesses - [3/11-3/13]
 * [ ] Add a separate remix allowing a 7 letter word - [3/14-3/16]
 
-  - [ ] Subtask (After I finish MVP)
+
+- [ ] Subtask (After I finish MVP)
 * [ ] Creating a section for Survey (Purpose: Feedback on my code) - [3/17-3/18]
 * [ ]Copyright detail on the buttom of the webpage - [3/19]
 
