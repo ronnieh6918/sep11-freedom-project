@@ -6,10 +6,10 @@ Welcome to my 4th Blog Entry, I tinkered with [ReactJS](https://react.dev/learn)
 
 # Content:
 #### Notes from my Learning Log 8:
-* ``const [squares, setSquares] = useState(Array(30).fill(null));`` - creates an array holding 30 squares with a null value (non-set placeholder for each square), setSquare updates state whenever square changes (helpful when state is constantly updating and rendering with new values).
-* ``return <button className="square">{value}</button>;`` - display value of ``squares[index]`` from Board component and renders on user's screen (checking each square by their assigned index and observe when state changes).
-* ``{[0,1,2,3,4].map(row => (<div className="board-row" key={row}))}`` - Create 5 rows each starting at an index of 0 to 4. Map will create a div to separate each row with a div, and each row has their unique index that will be tracked if square state changes inside of the rows.
-* ``{[0,1,2,3,4,5].map(col => { const index = row * 6 + col; return <Square key={index} value={squares[index]} />; })}`` - Create 6 columns per row. Row 0 --> Row 1 it needs to pass 6 squares (first square [index = 0] + remaining column [1,2,3,4,5]). Row 1 starts at the index of 1 * 6 = (6 + remaining column [7,8,9,10,11]) and the same process continues for Row 2,3,4. Then observe for when each square has its state changed passing it back to Square component.
+* ``const [squares, setSquares] = useState(Array(30).fill(null));`` - **creates an array holding 30 squares with a null value (non-set placeholder for each square), setSquare updates state whenever square changes (helpful when state is constantly updating and rendering with new values).**
+* ``return <button className="square">{value}</button>;`` - **display value of ``squares[index]`` from Board component and renders on user's screen (checking each square by their assigned index and observe when state changes).**
+* ``{[0,1,2,3,4].map(row => (<div className="board-row" key={row}))}`` - **create 5 rows each starting at an index of 0 to 4. Map will create a div to separate each row with a div, and each row has their unique index that will be tracked if square state changes inside of the rows.**
+* ``{[0,1,2,3,4,5].map(col => { const index = row * 6 + col; return <Square key={index} value={squares[index]} />; })}`` - **create 6 columns per row. Row 0 --> Row 1 it needs to pass 6 squares (first square [index = 0] + remaining column [1,2,3,4,5]). Row 1 starts at the index of 1 * 6 = (6 + remaining column [7,8,9,10,11]) and the same process continues for Row 2,3,4. Then observe for when each square has its state changed passing it back to Square component.**
 
 Below is a 6-letter Wordle Grid using ReactJS and CSS styling:
 
