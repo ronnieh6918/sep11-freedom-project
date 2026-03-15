@@ -532,7 +532,7 @@ I started a new set of code that allow me to create a 6 by 5 grid using ReactJS.
 * ``{[0,1,2,3,4,5].map(col => { const index = row * 6 + col; return <Square key={index} value={squares[index]} />; })}`` - Create 6 columns per row. Row 0 --> Row 1 it needs to pass 6 squares (first square [index = 0] + remaining column [1,2,3,4,5]). Row 1 starts at the index of 1 * 6 = (6 + remaining column [7,8,9,10,11]) and the same process continues for Row 2,3,4. Then observe for when each square has its state changed passing it back to Square component.
 
 
-**Below is my CSS code for the board and square:**
+**Below is my CSS code for the Board and Square:**
 
 ``` CSS
 <style>
@@ -552,7 +552,7 @@ I started a new set of code that allow me to create a 6 by 5 grid using ReactJS.
 </style>
 ```
 
-**Below is my ReactJS code for the board and square:**
+**Below is my ReactJS code**
 
 ```js
 <script type = "text/babel">
@@ -582,6 +582,8 @@ ReactDOM.createRoot(document.getElementById("root")).render(<Board />)
 ```
 
 **Result:**
+
+<img width="240" height="209" alt="Screenshot 2026-03-08 1 51 18 PM" src="https://github.com/user-attachments/assets/ce7ff3c5-75cf-4e52-9e89-d8170726947b" />
 
 <hr>
 
