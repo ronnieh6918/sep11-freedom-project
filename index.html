@@ -34,32 +34,106 @@
     </head>
     <body>
         <!-- HTML -->
-        <div id="root"></div>
+        <div id = "root"></div>
+        <script type="text/babel">
+        const { useState, useEffect } = React;
 
-        <!-- React -->
-        <script type = "text/babel">
-        const { useState } = React;
         function Square({ value }) {
           return <button className="square">{value}</button>;
         }
 
-          function Board() {
-          const [squares, setSquares] = useState(Array(30).fill(null));
-          return(
+        function Board({ history }) {
+          const rows = 5;
+          const cols = 6;
+
+          return (
             <div className="board">
-              {[0,1,2,3,4].map(row => (
-                <div className="board-row" key={row}>
-                  {[0,1,2,3,4,5].map(col => {
-                    const index = row * 6 + col;
-                    return <Square key={index} value={squares[index]} />;
-                  })}
-                </div>
+              {Array.from({ length: rows }).map((_, row) => {
+                const word = history[row] || "";
+
+                return (
+                  <div className="board-row" key={row}>
+                    {Array.from({ length: cols }).map((_, col) => (
+                      <Square key={col} value={word[col] || ""} />
+                    ))}
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }
+
+        function Message({ text }) {
+          return <p style={{ color: "orange", fontWeight: "bold" }}>{text}</p>;
+        }
+
+        function Guessing({ history, setHistory }) {
+          const [guess, setGuess] = useState("");
+          const secret = "WORDLE";
+
+          useEffect(() => {
+            if (history.includes(secret)) {
+              alert("You guessed the word!!");
+            }
+          }, [history]);
+
+          function checkGuess() {
+            if (!guess || guess.length !== 6) return;
+
+            setHistory([...history, guess.toUpperCase()]);
+            setGuess("");
+          }
+
+          return (
+            <div style={{ fontFamily: "Arial", padding: "20px" }}>
+              <h2>6-Letter Word Guessing Game</h2>
+
+              <input
+                type="text"
+                value={guess}
+                onChange={(e) => setGuess(e.target.value)}
+                maxLength={6}
+                placeholder="Type 6 letters"
+                onKeyDown={(e) => e.key === "Enter" && checkGuess()}
+              />
+
+              {guess.length > 0 && guess.length < 6 && (
+                <Message text="Word must be 6 letters!" />
+              )}
+
+              <button onClick={checkGuess}>Check</button>
+
+              <p>Total guess: {history.length}</p>
+
+              <h3>Guess History:</h3>
+              {history.map((g, i) => (
+                <p
+                  key={i}
+                  style={{
+                    color: g === secret ? "green" : "red",
+                    fontWeight: g === secret ? "bold" : "normal"
+                  }}
+                >
+                  {g === secret ? "Correct!" : "Wrong!"} — {g}
+                </p>
               ))}
             </div>
           );
         }
 
-        ReactDOM.createRoot(document.getElementById("root")).render(<Board />)
+        function App() {
+          const [history, setHistory] = useState([]);
+
+          return (
+            <div>
+              <Board history={history} />
+              <Guessing history={history} setHistory={setHistory} />
+            </div>
+          );
+        }
+
+
+        ReactDOM.createRoot(document.getElementById("root")).render(<App />);
         </script>
     </body>
 </html>
