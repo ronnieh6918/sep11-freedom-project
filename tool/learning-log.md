@@ -589,6 +589,174 @@ ReactDOM.createRoot(document.getElementById("root")).render(<Board />)
 <hr>
 
 ### 3/22/2026
+I merged the Board and Guessing components so that when the user types a guess, the board displays that word in the grid and keeps a history of all guesses. Since Board and Guessing each had their own separate data, I created a parent component called App to hold the shared state. App passes the history and update function down as props, allowing both Board and Guessing to stay synchronized and render the same data on the user’s screen.
+
+1st New Code Explanation:
+
+```js
+function Board({ history }) {
+  const rows = 5;
+  const cols = 6;
+
+  return (
+    <div className="board">
+      {Array.from({ length: rows }).map((_, row) => {
+        const word = history[row] || "";
+
+        return (
+          <div className="board-row" key={row}>
+            {Array.from({ length: cols }).map((_, col) => (
+              <Square key={col} value={word[col] || ""} />
+            ))}
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+```
+
+* ``function Board({ history })`` - **Board will now pass strings as props (aka. guesses) from history array.**
+* ``{Array.from({ length: rows }).map((_, row) => { const word = history[row] || ""</div>;`` - **Board will contain an array of rows, and map will be used to go through each row with their index. Word in the board will match with history array based on the index of each string in history passed as index of each individual row in the board component.**
+* ``<div className="board-row" key={row}>{Array.from({ length: cols }).map((_, col) => (<Square key={col} value={word[col] || ""} />))}`` - **The value that will return the prop passed to the rows (which contains full 6 letter word) that will later render the square tiles, and for each row containing 5 squares, by passing in the word from history to board component, the value that is returned in each column will be the word passed starting from index of its first to last letter of its string.**
+
+2nd New Code Explanation:
+
+```js
+function App() {
+  const [history, setHistory] = useState([]);
+
+  return (
+    <div>
+      <Board history={history} />
+      <Guessing history={history} setHistory={setHistory} />
+    </div>
+  );
+}
+```
+
+* ``const [history, setHistory] = useState([]);`` - **App will render history state whenever history changes. History will contain an array of updated values passed from setHistory (aka. updated from Guessing component).**
+* ``<div><Board history={history} /><Guessing history={history} setHistory={setHistory} /></div>`` - **Call the Board component and input history prop (each guess that is being updated in history component) that is passed to the App component. However, the Guessing component will have history updated from App which will pass down the history state.**
+
+**Here is my full code:**
+
+```js
+<div id = "root"></div>
+  <script type="text/babel">
+  const { useState, useEffect } = React;
+
+  function Square({ value }) {
+    return <button className="square">{value}</button>;
+  }
+
+  function Board({ history }) {
+    const rows = 5;
+    const cols = 6;
+
+    return (
+      <div className="board">
+        {Array.from({ length: rows }).map((_, row) => {
+          const word = history[row] || "";
+
+          return (
+            <div className="board-row" key={row}>
+              {Array.from({ length: cols }).map((_, col) => (
+                <Square key={col} value={word[col] || ""} />
+              ))}
+            </div>
+          );
+        })}
+      </div>
+    );
+  }
+
+
+  function Message({ text }) {
+    return <p style={{ color: "orange", fontWeight: "bold" }}>{text}</p>;
+  }
+
+
+  function Guessing({ history, setHistory }) {
+    const [guess, setGuess] = useState("");
+    const secret = "WORDLE";
+
+    useEffect(() => {
+      if (history.includes(secret)) {
+        alert("You guessed the word!!");
+      }
+    }, [history]);
+
+    function checkGuess() {
+      if (!guess || guess.length !== 6) return;
+
+      setHistory([...history, guess.toUpperCase()]);
+      setGuess("");
+    }
+
+    return (
+      <div style={{ fontFamily: "Arial", padding: "20px" }}>
+        <h2>6-Letter Word Guessing Game</h2>
+
+        <input
+          type="text"
+          value={guess}
+          onChange={(e) => setGuess(e.target.value)}
+          maxLength={6}
+          placeholder="Type 6 letters"
+          onKeyDown={(e) => e.key === "Enter" && checkGuess()}
+        />
+
+        {guess.length > 0 && guess.length < 6 && (
+          <Message text="Word must be 6 letters!" />
+        )}
+
+        <button onClick={checkGuess}>Check</button>
+
+        <p>Total guess: {history.length}</p>
+
+        <h3>Guess History:</h3>
+        {history.map((g, i) => (
+          <p
+            key={i}
+            style={{
+              color: g === secret ? "green" : "red",
+              fontWeight: g === secret ? "bold" : "normal"
+            }}
+          >
+            {g === secret ? "Correct!" : "Wrong!"} — {g}
+          </p>
+        ))}
+      </div>
+    );
+  }
+
+
+  function App() {
+    const [history, setHistory] = useState([]);
+
+    return (
+      <div>
+        <Board history={history} />
+        <Guessing history={history} setHistory={setHistory} />
+      </div>
+    );
+  }
+
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+```
+
+**Results:**
+
+* Takeaway: **State is something that changes and each time it changes, it can be used as a prop for another component.**
+* Errors to fix for next Learning Log: **When user inputs 6 letter symbols/numbers, it'll still show the guess is correct.**
+* Additional Improvements for future Learning Log: **Color the tiles and organizing the position on the user's screen.**
+
+<hr>
+
+###
+
 <!--
 * Links you used today (websites, videos, etc)
 * Things you tried, progress you made, etc
