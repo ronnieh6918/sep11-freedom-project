@@ -750,8 +750,8 @@ function App() {
 **Results:**
 
 * Takeaway: **State is something that changes and each time it changes, it can be used as a prop for another component.**
-* Errors to fix for next Learning Log: **When user inputs 6 letter symbols/numbers, it'll still show the guess is correct.**
-* Additional Improvements for future Learning Log: **Color the tiles and organizing the position on the user's screen.**
+* Errors to fix for next Learning Log: **When user inputs 6 letter symbols/numbers, it'll still show the guess is correct (only after user figured the correct guess).**
+* Additional Improvements for future Learning Log: **Color the tiles and organizing the position on the user's screen. Also when the Board is full, it should reset so user can guess again.**
 
 <hr>
 
