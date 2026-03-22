@@ -749,8 +749,14 @@ function App() {
 
 **Results:**
 
+<img width="367" height="461" alt="Screenshot 2026-03-22 6 35 34 PM" src="https://github.com/user-attachments/assets/0ceb6ea3-e56a-4a38-bf20-979396d161a1" />
+
 * Takeaway: **State is something that changes and each time it changes, it can be used as a prop for another component.**
-* Errors to fix for next Learning Log: **When user inputs 6 letter symbols/numbers, it'll still show the guess is correct (only after user figured the correct guess).**
+* Errors to fix for next Learning Log: **When user inputs 6 letter symbols/numbers, it'll still show alert that the guess is correct (only after user figured the correct guess). While, history array shows that it is wrong which means it's constantly checking new guesses.**
+
+**For example, the error shown below:**
+<img width="896" height="461" alt="Screenshot 2026-03-22 6 36 46 PM" src="https://github.com/user-attachments/assets/0310b9ce-e688-4811-959e-db6b2f5e47bf" />
+
 * Additional Improvements for future Learning Log: **Color the tiles and organizing the position on the user's screen. Also when the Board is full, it should reset so user can guess again.**
 
 <hr>
