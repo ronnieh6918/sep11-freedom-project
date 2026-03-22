@@ -523,6 +523,7 @@ root.render(<Guessing />);
 
 <hr>
 
+### 3/8/2026
 I started a new set of code that allow me to create a 6 by 5 grid using ReactJS. I used **React component (Square and Board)**, **useState hook (square and setsquare)**, using **prop to store values from per square using React components (Board --> Square)**, and **Dynamically rendering with map to avoid making 30 square tiles**.
 
 # Notes
@@ -587,6 +588,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(<Board />)
 
 <hr>
 
+### 3/22/2026
 <!--
 * Links you used today (websites, videos, etc)
 * Things you tried, progress you made, etc
