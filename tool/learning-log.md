@@ -977,7 +977,7 @@ const statuses = word
 
 **Result:**
 
-
+<img width="426" height="514" alt="Screenshot 2026-03-29 7 23 40 PM" src="https://github.com/user-attachments/assets/0aff536d-d51d-438c-8e28-7ce5c4882f21" />
 
 <!--
 * Links you used today (websites, videos, etc)
