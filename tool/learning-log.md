@@ -761,7 +761,223 @@ function App() {
 
 <hr>
 
-###
+### 3/23/2026
+For Learning Log 10, I want to add colors to tiles which happens when user types their guess. **I am going to check using the index of each letter in the secret word to then alter the colors if they match --> green, if not --> red.**
+
+1) This code checks for the secret word and checks for the index of each letter in the string. **The array is split in order to check if letter matches with secret.**
+
+```js
+function getLetterStatus(guess, secret) {
+  const result = Array(guess.length).fill("wrong");
+  const secretArr = secret.split("");
+
+  guess.split("").forEach((letter, i) => {
+    if (letter === secret[i]) {
+      result[i] = "correct";
+      secretArr[i] = null;
+    }
+  });
+
+  guess.split("").forEach((letter, i) => {
+    if (result[i] === "correct") return;
+
+    const index = secretArr.indexOf(letter);
+    if (index !== -1) {
+      result[i] = "misplaced";
+      secretArr[index] = null;
+    }
+  });
+
+  return result;
+}
+```
+* Secret array holds each letter from the user's guess and checks if position matches
+* The code originally think every letter is wrong (by filling it as "wrong")
+* The code will check when it matches the exact position (letter === secret[i])
+* When index is -1, it is nowhere in the array, but if it's not equal to -1 and that's when the letter exists somewhere besides it's actual position compared to the secret word
+* Using null when checking secret array either when misplaced or correct will make sure the letter is fixed to the position in the secret word (prevents duplicated letters from being marked as correct or misplaced)
+
+2) This code will change each button depending on status. **If status is correct, the background of the button will change to green. If misplaced or wrong, it'll change to yellow or gray respectively. Set the initial background of each square to light gray.**
+
+```js
+function Square({ value, status }) {
+  let bg = "lightgray";
+
+  if (status === "correct") bg = "#6aaa64";   // green
+  else if (status === "misplaced") bg = "#c9b458"; // yellow
+  else if (status === "wrong") bg = "#787c7e";  // gray
+
+  return (
+    <button
+      className="square"
+      style={{ backgroundColor: bg }}
+    >
+      {value}
+    </button>
+  );
+}
+```
+* Keeping track of letter --> assigning colors after checking guess to secret, then checking their value and their status
+
+3) This code will **check from getLetterStatus, and when the secret array will contain only "correct", "wrong", or "misplaced" --> add up to word (aka. user's guess) and comparing it to secret, if there is no guess then then return array of nothing.**
+
+```js
+const statuses = word
+  ? getLetterStatus(word, secret)
+  : [];
+```
+* Tenary operator can check if word matches with secret to then be able to grab that value and apply it to square (with color and position)
+
+**My current code:**
+
+```js
+<div id = "root"></div>
+<script type="text/babel">
+  const { useState, useEffect } = React;
+
+  function getLetterStatus(guess, secret) {
+    const result = Array(guess.length).fill("wrong");
+    const secretArr = secret.split("");
+
+    guess.split("").forEach((letter, i) => {
+      if (letter === secret[i]) {
+        result[i] = "correct";
+        secretArr[i] = null;
+      }
+    });
+
+    guess.split("").forEach((letter, i) => {
+      if (result[i] === "correct") return;
+
+      const index = secretArr.indexOf(letter);
+      if (index !== -1) {
+        result[i] = "misplaced";
+        secretArr[index] = null;
+      }
+    });
+
+    return result;
+  }
+
+  function Square({ value, status }) {
+    let bg = "lightgray";
+
+    if (status === "correct") bg = "#6aaa64";   // green
+    else if (status === "misplaced") bg = "#c9b458"; // yellow
+    else if (status === "wrong") bg = "#787c7e";  // gray
+
+    return (
+      <button
+        className="square"
+        style={{ backgroundColor: bg }}
+      >
+        {value}
+      </button>
+    );
+  }
+
+  function Board({ history, secret }) {
+    const rows = 5;
+    const cols = 6;
+
+    return (
+      <div className="board">
+        {Array.from({ length: rows }).map((_, row) => {
+          const word = history[row] || "";
+          const statuses = word
+            ? getLetterStatus(word, secret)
+            : [];
+
+            return (
+              <div className="board-row" key={row}>
+                {Array.from({ length: cols }).map((_, col) => (
+                  <Square key={col} value={word[col] || ""} status={statuses[col]}/>
+                ))}
+              </div>
+            );
+          })}
+        </div>
+      );
+    }
+
+    function Message({ text }) {
+      return <p style={{ color: "orange", fontWeight: "bold" }}>{text}</p>;
+    }
+
+    function Guessing({ history, setHistory, secret }) {
+      const [guess, setGuess] = useState("");
+
+      useEffect(() => {
+        if (history.includes(secret)) {
+          alert("You guessed the word!!");
+        }
+      }, [history]);
+
+
+    function checkGuess() {
+      if (!guess || guess.length !== 6) return;
+
+      setHistory([...history, guess.toUpperCase()]);
+      setGuess("");
+    }
+
+    return (
+      <div style={{ fontFamily: "Arial", padding: "20px" }}>
+        <h2>6-Letter Word Guessing Game</h2>
+
+        <input
+          type="text"
+          value={guess}
+          onChange={(e) => setGuess(e.target.value)}
+          maxLength={6}
+          placeholder="Type 6 letters"
+          onKeyDown={(e) => e.key === "Enter" && checkGuess()}
+        />
+
+        {guess.length > 0 && guess.length < 6 && (
+          <Message text="Word must be 6 letters!" />
+        )}
+
+        <button onClick={checkGuess}>Check</button>
+
+        <p>Total guess: {history.length}</p>
+
+        <h3>Guess History:</h3>
+        {history.map((g, i) => (
+          <p
+            key={i}
+            style={{
+              color: g === secret ? "green" : "red",
+              fontWeight: g === secret ? "bold" : "normal"
+            }}
+          >
+            {g === secret ? "Correct!" : "Wrong!"} — {g}
+          </p>
+        ))}
+      </div>
+    );
+  }
+
+  function App() {
+    const [history, setHistory] = useState([]);
+    const secret = "WORDLE";
+
+    return (
+      <div>
+        <Board history={history} secret={secret} />
+        <Guessing history={history} setHistory={setHistory} secret={secret}/>
+      </div>
+    );
+  }
+
+
+  ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+</script>
+```
+
+**Result:**
+
+
 
 <!--
 * Links you used today (websites, videos, etc)
