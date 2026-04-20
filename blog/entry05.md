@@ -4,6 +4,8 @@
 # Context:
 Welcome to my 5th Blog Entry, **I have created a minimal viable product for my wordle app using [ReactJS](https://react.dev/learn). In this blog, I will be talking more about my progress and some of the new codes I added prior to my previous blog entry.** **During my tinkering, I used [w3schools](https://www.w3schools.com/css/) to apply CSS properties in the div tag, so that when the code renders, my wordle app will now be in the center of the screen.** This is to improve visibility overall but also preparing for how I should add onto the plain background before my SEP presentation. If I have enough time, I plan to organize my app, and I will add more to it with the feedbacks that I recieve from my peers moving forward.
 
+**Link to my [SEP11 Freedom Project](https://ronnieh6918.github.io/sep11-freedom-project/)**
+
 # Content:
 ```js
 const { useState, useEffect } = React;
