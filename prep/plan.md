@@ -43,6 +43,20 @@
 * [ ] Creating a section for Survey (Purpose: Feedback on my code) - [3/17-3/18]
 * [ ] Copyright detail on the buttom of the webpage - [3/19]
 
+#### New MVP
+- Finish making a viable wordle product using ReactJS [X]
+- Didn't have time to create a separate info website explaining why I picked wordle [unfinished]
+
+#### New Beyond MVP List
+* How can I make my product stand out based on my peer's feedback?
+- Add animation to the tiles each time user guesses [] --> priority
+- Adding hints about the secret word [] --> 2nd priority
+- Organize layout of product [] --> not long either
+- Make the background darker color [] --> doesn't take long
+- If extra time: Make a separate 7 letter guess wordle remix [] --> final priority
+
+
+
 
 
 <!-- EXAMPLE
