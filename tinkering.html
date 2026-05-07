@@ -17,6 +17,20 @@
             display: flex;
           }
 
+          body {
+            background: #121213;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+          }
+
+          .board-row {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+            margin-bottom: 5px;
+          }
+
           .square {
             width: 40px;
             height: 40px;
@@ -28,6 +42,33 @@
             cursor: pointer;
           }
 
+
+          .tile.correct   { background: #538d4e; border-color: #6aaa64; }
+          .tile.misplaced { background: #b59f3b; border-color: #d4b84a; }
+          .tile.wrong     { background: #4a4a4c; border-color: #6e7072; }
+
+          @keyframes flip {
+            0%   { transform: scaleY(1); }
+            50%  { transform: scaleY(0); }
+            100% { transform: scaleY(1); }
+          }
+
+          .tile.flip {
+            animation: flip 0.5s ease forwards;
+          }
+
+        .tile {
+            width: 62px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 700;
+            border: 2px solid #3a3a3c;
+            color: #fff;
+            background: #121213;
+        }
         </style>
 
         <title>Title</title>
@@ -61,20 +102,17 @@
             return result;
         }
 
-        function Square({ value, status }) {
-            let bg = "lightgray";
-            if (status === "correct") bg = "#6aaa64";
-            else if (status === "misplaced") bg = "#c9b458";
-            else if (status === "wrong") bg = "#787c7e";
+        function Square({ value, status, col, submitted }) {
             return (
-                <button
-                    className="square"
-                    style={{ backgroundColor: bg }}
+                <div
+                    className={`tile ${submitted ? status : ""} ${submitted ? "flip" : ""}`}
+                    style={{ animationDelay: submitted ? `${col * 0.15}s` : "0s" }}
                 >
                     {value}
-                </button>
+                </div>
             );
         }
+
 
         function Board({ history, secret }) {
             const rows = 6;
@@ -89,7 +127,13 @@
                         return (
                             <div className="board-row" key={row}>
                                 {Array.from({ length: cols }).map((_, col) => (
-                                    <Square key={col} value={word[col] || ""} status={statuses[col]} />
+                                    <Square
+                                        key={col}
+                                        value={word[col] || ""}
+                                        status={statuses[col]}
+                                        col={col}
+                                        submitted={row < history.length}
+                                    />
                                 ))}
                             </div>
                         );
