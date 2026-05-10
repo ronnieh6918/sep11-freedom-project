@@ -1,6 +1,4 @@
-const { useState, useEffect } = React;
-
-// list of possible secret words
+const {useState} = React;
 const WORDS = ["CASTLE","PLANET","BRIDGE","FRAMES","GOLDEN","SIMPLE","WORDLE","BLANKS","CHROME","FRIGHT"];
 
 function getLetterStatus(guess, secret) {
@@ -23,20 +21,17 @@ function getLetterStatus(guess, secret) {
     return result;
 }
 
-function Square({ value, status }) {
-    let bg = "lightgray";
-    if (status === "correct") bg = "#6aaa64";
-    else if (status === "misplaced") bg = "#c9b458";
-    else if (status === "wrong") bg = "#787c7e";
+function Square({ value, status, col, submitted }) {
     return (
-        <button
-            className="square"
-            style={{ backgroundColor: bg }}
+        <div
+            className={`tile ${submitted ? status : ""} ${submitted ? "flip" : ""}`}
+            style={{ animationDelay: submitted ? `${col * 0.15}s` : "0s" }}
         >
             {value}
-        </button>
+        </div>
     );
 }
+
 
 function Board({ history, secret }) {
     const rows = 6;
@@ -51,7 +46,13 @@ function Board({ history, secret }) {
                 return (
                     <div className="board-row" key={row}>
                         {Array.from({ length: cols }).map((_, col) => (
-                            <Square key={col} value={word[col] || ""} status={statuses[col]} />
+                            <Square
+                                key={col}
+                                value={word[col] || ""}
+                                status={statuses[col]}
+                                col={col}
+                                submitted={row < history.length}
+                            />
                         ))}
                     </div>
                 );
