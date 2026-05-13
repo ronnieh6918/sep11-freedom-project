@@ -5,7 +5,7 @@ const WORDS = ["CASTLE","PLANET","BRIDGE","FRAMES","GOLDEN","SIMPLE","WORDLE","B
 
 // takes the guess and secret word, and figures out if each letter is green, yellow, or gray
 function getLetterStatus(guess, secret) {
-    const result = Array(guess.length).fill("wrong"); // start everything as gray
+    const result = Array(guess.length).fill("wrong"); // start everything as gray so we can update the tiles
     const secretArr = secret.split(""); // copy of the secret so we can cross off letters as they get matched
 
     // go through each letter, if it's in the right spot, then mark it green
@@ -138,7 +138,7 @@ function Guessing({ history, setHistory, secret }) {
     );
 }
 
-// the whole app by picking a random secret word on load and passes it to both components
+// the whole app - picks a random secret word on load and passes it down to the board and input
 function App() {
     const [history, setHistory] = useState([]);
 
